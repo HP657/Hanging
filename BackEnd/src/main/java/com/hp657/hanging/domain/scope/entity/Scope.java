@@ -18,9 +18,6 @@ public class Scope {
     private Long id;
 
     @Column(nullable = false)
-    private String category;
-
-    @Column(nullable = false)
     private int score;
 
     @ManyToOne

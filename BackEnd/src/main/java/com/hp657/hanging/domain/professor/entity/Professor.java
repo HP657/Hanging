@@ -1,6 +1,6 @@
 package com.hp657.hanging.domain.professor.entity;
 
-import com.hp657.hanging.domain.evaluation.entity.Evaluation;
+import com.hp657.hanging.domain.lecture.entity.Lecture;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -23,5 +23,5 @@ public class Professor {
     private String name;
 
     @OneToMany(mappedBy = "professor", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Evaluation> evaluations;
+    private List<Lecture> lectures;
 }

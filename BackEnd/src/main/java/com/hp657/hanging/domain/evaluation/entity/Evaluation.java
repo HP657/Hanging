@@ -1,5 +1,6 @@
 package com.hp657.hanging.domain.evaluation.entity;
 
+import com.hp657.hanging.domain.lecture.entity.Lecture;
 import com.hp657.hanging.domain.professor.entity.Professor;
 import com.hp657.hanging.domain.scope.entity.Scope;
 import jakarta.persistence.*;
@@ -24,8 +25,8 @@ public class Evaluation {
     private String content;
 
     @ManyToOne
-    @JoinColumn(name = "professor_id", nullable = false)
-    private Professor professor;
+    @JoinColumn(name = "lecture_id", nullable = false)
+    private Lecture lecture;
 
     @OneToMany(mappedBy = "evaluation", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Scope> scopes;
