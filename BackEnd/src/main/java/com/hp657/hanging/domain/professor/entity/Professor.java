@@ -1,5 +1,6 @@
 package com.hp657.hanging.domain.professor.entity;
 
+import com.hp657.hanging.domain.department.entity.Department;
 import com.hp657.hanging.domain.lecture.entity.Lecture;
 import jakarta.persistence.*;
 import lombok.*;
@@ -22,6 +23,15 @@ public class Professor {
     @Column(nullable = false, unique = true)
     private String name;
 
-    @OneToMany(mappedBy = "professor", cascade = CascadeType.ALL, orphanRemoval = true)
+    @ManyToOne
+    @JoinColumn(name = "department_id", nullable = false)
+    private Department department;
+
+    @ManyToMany
+    @JoinTable(
+            name = "lecture_professor",
+            joinColumns = @JoinColumn(name = "professor_id"),
+            inverseJoinColumns = @JoinColumn(name = "lecture_id")
+    )
     private List<Lecture> lectures;
 }

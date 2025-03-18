@@ -1,27 +1,27 @@
-package com.hp657.hanging.domain.lecture.entity;
+package com.hp657.hanging.domain.department.entity;
 
-import com.hp657.hanging.domain.evaluation.entity.Evaluation;
 import com.hp657.hanging.domain.professor.entity.Professor;
 import jakarta.persistence.*;
 import lombok.*;
+
 import java.util.List;
 
 @Entity
-@Table(name = "lectures")
+@Table(name = "departments")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Lecture {
+public class Department {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
-    private String title;
+    @Column(nullable = false, unique = true)
+    private String name;
 
-    @ManyToMany(mappedBy = "lectures")
+    @OneToMany(mappedBy = "department", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Professor> professors;
 }

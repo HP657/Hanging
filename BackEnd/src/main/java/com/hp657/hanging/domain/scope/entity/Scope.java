@@ -24,4 +24,3 @@ public class Scope {
     @JoinColumn(name = "evaluation_id", nullable = false)
     private Evaluation evaluation;
 }
-
