@@ -18,7 +18,7 @@ public class Scope {
     private Long id;
 
     @Column(nullable = false)
-    private int score;
+    private Double score;
 
     @ManyToOne
     @JoinColumn(name = "evaluation_id", nullable = false)
