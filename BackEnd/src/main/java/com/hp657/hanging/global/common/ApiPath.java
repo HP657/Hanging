@@ -11,6 +11,7 @@ public class ApiPath {
     public static final String EVALUATION_PATH = BASE_PATH + "/evaluation";
     public static final String SCOPE_PATH = BASE_PATH + "/scope";
     public static final String VISITANT_PATH = BASE_PATH + "/visitant";
+    public static final String DEPARTMENT_PATH = BASE_PATH + "/department";
 
     public static String H2_PATH;
 

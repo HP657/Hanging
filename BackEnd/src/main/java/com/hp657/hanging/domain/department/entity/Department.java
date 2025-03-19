@@ -4,6 +4,7 @@ import com.hp657.hanging.domain.professor.entity.Professor;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -23,5 +24,11 @@ public class Department {
     private String name;
 
     @OneToMany(mappedBy = "department", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Professor> professors;
+    @Builder.Default
+    private List<Professor> professors = new ArrayList<>();
+
+    public Department(String name) {
+        this.name = name;
+        this.professors = new ArrayList<>();
+    }
 }
