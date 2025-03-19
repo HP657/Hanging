@@ -1,10 +1,8 @@
 package com.hp657.hanging.domain.lecture.entity;
 
-import com.hp657.hanging.domain.evaluation.entity.Evaluation;
 import com.hp657.hanging.domain.professor.entity.Professor;
 import jakarta.persistence.*;
 import lombok.*;
-import java.util.List;
 
 @Entity
 @Table(name = "lectures")
@@ -22,6 +20,7 @@ public class Lecture {
     @Column(nullable = false)
     private String title;
 
-    @ManyToMany(mappedBy = "lectures")
-    private List<Professor> professors;
+    @ManyToOne
+    @JoinColumn(name = "professor_id", nullable = false) // ✅ ManyToOne 관계에서 JoinColumn 사용 가능
+    private Professor professor;
 }
