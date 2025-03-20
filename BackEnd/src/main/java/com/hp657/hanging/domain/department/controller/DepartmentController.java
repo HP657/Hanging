@@ -20,7 +20,7 @@ public class DepartmentController {
     private final DepartmentService departmentService;
 
     @GetMapping
-    public ResponseEntity<List<Department>> getDepartment() {
-        return ResponseEntity.ok(new Response<>(HttpStatus.OK,departmentService.getDepartment()).getData());
+    public ResponseEntity<Response<List<Department>>> getDepartment() {
+        return ResponseEntity.ok(new Response<>(HttpStatus.OK,departmentService.getDepartment()));
     }
 }

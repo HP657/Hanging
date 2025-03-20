@@ -1,5 +1,6 @@
 package com.hp657.hanging.domain.professor.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.hp657.hanging.domain.department.entity.Department;
 import com.hp657.hanging.domain.lecture.entity.Lecture;
 import jakarta.persistence.*;
@@ -25,6 +26,7 @@ public class Professor {
 
     @ManyToOne
     @JoinColumn(name = "department_id", nullable = false)
+    @JsonIgnore
     private Department department;
 
     @ManyToMany
