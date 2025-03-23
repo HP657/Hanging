@@ -1,0 +1,12 @@
+.falling-stars-container {
+  position: relative;
+  width: 100%;
+  background-color: black;
+  overflow: hidden;
+}
+
+.falling-star {
+  position: absolute;
+  background-color: white;
+  border-radius: 50%;
+}

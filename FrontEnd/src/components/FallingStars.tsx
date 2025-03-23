@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { nanoid } from "nanoid";
+import "./css/FallingStars.css"
 
 interface StarType {
   id: string;

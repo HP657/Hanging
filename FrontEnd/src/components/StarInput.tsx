@@ -1,28 +1,31 @@
 import React, { ChangeEvent, useState } from "react";
+import "./css/StarInput.css"; 
 
-const StarInput: React.FC = () => {
+interface StarInputProps {
+  onRatingChange: (rating: number) => void; 
+}
+
+export default function StarInput({ onRatingChange }: StarInputProps) {
   const [starCount, setStarCount] = useState<number>(0); 
   const starColor = (starCount / 5) * 100 + "%"; 
-    const [scope, setScope] = useState<string>("");
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setStarCount(Number(e.target.value));
-    setScope(e.target.value)
+    const newRating = Number(e.target.value);
+    setStarCount(newRating);
+    onRatingChange(newRating);
   };
 
   return (
     <div>
-      <span className="star" style={{ position: "relative", fontSize: "2rem", color: "#ddd", borderRadius: "5px" }}>
+      <span className="star">
         ★★★★★
-        <span style={{
-          position: "absolute",
-          left: 0,
-          color: "#FFDB00",
-          width: starColor,
-          overflow: "hidden",
-          pointerEvents: "none",
-          borderRadius: "5px", 
-        }}>★★★★★</span>
+        <span
+          style={{
+            width: starColor,
+          }}
+        >
+          ★★★★★
+        </span>
         <input
           type="range"
           onChange={handleChange}
@@ -30,21 +33,8 @@ const StarInput: React.FC = () => {
           min="0"
           max="5"
           value={starCount} 
-          style={{
-            width: "100%",
-            height: "100%",
-            position: "absolute",
-            left: 0,
-            opacity: 0,
-            cursor: "pointer",
-            borderRadius: "5px",
-          }}
         />
       </span>
-      <br />
-      {scope}
     </div>
   );
 };
-
-export default StarInput;

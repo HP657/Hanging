@@ -1,0 +1,30 @@
+.star {
+  position: relative;
+  font-size: 2rem;
+  color: #ddd;
+  border-radius: 5px;
+  display: inline-block;
+}
+
+.star span {
+  position: absolute;
+  left: 0;
+  color: #ffdb00;
+  overflow: hidden;
+  pointer-events: none;
+  border-radius: 5px;
+}
+
+.star input {
+  width: 100%;
+  height: 30px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  cursor: pointer;
+  border-radius: 5px;
+  touch-action: none;
+  z-index: 2;
+  pointer-events: all;
+}
