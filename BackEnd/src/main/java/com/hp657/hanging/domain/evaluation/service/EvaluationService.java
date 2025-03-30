@@ -2,7 +2,9 @@ package com.hp657.hanging.domain.evaluation.service;
 
 import com.hp657.hanging.domain.department.entity.Department;
 import com.hp657.hanging.domain.department.repository.DepartmentRepository;
+import com.hp657.hanging.domain.evaluation.dto.CourseEvaluationDTO;
 import com.hp657.hanging.domain.evaluation.dto.EvaluationRequestDto;
+import com.hp657.hanging.domain.evaluation.dto.LectureEvaluationDTO;
 import com.hp657.hanging.domain.evaluation.entity.Evaluation;
 import com.hp657.hanging.domain.evaluation.repository.EvaluationRepository;
 import com.hp657.hanging.domain.lecture.entity.Lecture;
@@ -14,6 +16,9 @@ import com.hp657.hanging.domain.scope.repository.ScopeRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -66,5 +71,16 @@ public class EvaluationService {
         scope.setEvaluation(evaluation);
         scope.setScore(requestDto.getRating());
         scopeRepository.save(scope);
+    }
+
+    public List<LectureEvaluationDTO> getLectureEvaluations() {
+        return  evaluationRepository.findLectureEvaluationsNative();
+
+
+    }
+
+    public List<CourseEvaluationDTO> getCourseEvaluationsWithComments() {
+
+        return evaluationRepository.findLectureEvaluationsWithComments();
     }
 }

@@ -1,5 +1,6 @@
 package com.hp657.hanging.domain.department.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.hp657.hanging.domain.professor.entity.Professor;
 import jakarta.persistence.*;
 import lombok.*;
@@ -25,6 +26,7 @@ public class Department {
 
     @OneToMany(mappedBy = "department", cascade = CascadeType.ALL, orphanRemoval = true)
     @Builder.Default
+    @JsonIgnore
     private List<Professor> professors = new ArrayList<>();
 
     public Department(String name) {

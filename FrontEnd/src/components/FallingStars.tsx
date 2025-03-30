@@ -27,7 +27,7 @@ export default function FallingStars() {
   const [stars, setStars] = useState<StarType[]>([]);
 
   useEffect(() => {
-    setStars(generateStars(30));
+    setStars(generateStars(100));
   }, []);
 
   return (

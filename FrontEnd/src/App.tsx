@@ -3,6 +3,8 @@ import Intro from "./pages/Intro";
 import Rating from "./pages/Rating";
 import Ranking from "./pages/Ranking";
 import Main from "./pages/Main";
+import Review from "./pages/Review";
+import Detail from "./pages/Detail";
 
 export default function App() {
   return (
@@ -12,6 +14,8 @@ export default function App() {
         <Route path="/main" element={<Main />} />
         <Route path="/rating" element={<Rating />} />
         <Route path="/rank" element={<Ranking />} />
+        <Route path="/review" element={<Review />} />
+        <Route path="/detail" element={<Detail />} />
       </Routes>
     </Router>
   );

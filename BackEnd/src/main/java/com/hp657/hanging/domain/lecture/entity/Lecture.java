@@ -21,6 +21,6 @@ public class Lecture {
     private String title;
 
     @ManyToOne
-    @JoinColumn(name = "professor_id", nullable = false) // ✅ ManyToOne 관계에서 JoinColumn 사용 가능
+    @JoinColumn(name = "professor_id", nullable = false)
     private Professor professor;
 }

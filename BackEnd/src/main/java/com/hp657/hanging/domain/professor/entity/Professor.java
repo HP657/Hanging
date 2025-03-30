@@ -29,11 +29,6 @@ public class Professor {
     @JsonIgnore
     private Department department;
 
-    @ManyToMany
-    @JoinTable(
-            name = "lecture_professor",
-            joinColumns = @JoinColumn(name = "professor_id"),
-            inverseJoinColumns = @JoinColumn(name = "lecture_id")
-    )
+    @OneToMany(mappedBy = "professor")
     private List<Lecture> lectures;
 }
