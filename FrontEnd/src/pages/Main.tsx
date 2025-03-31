@@ -21,16 +21,17 @@ const Main = () => {
     fetchData(); // 비동기 함수 호출
   }, []);
   const goToRanking = () => {
-    navigate('/rank'); // /ranking 경로로 리다이렉션
+    navigate('/rank'); 
   };
 
   const goToRating = () => {
-    navigate('/rating'); // /review 경로로 리다이렉션
+    navigate('/rating'); 
   };
 
   const goToReview = () => {
-    navigate('/review'); // /review 경로로 리다이렉션
+    navigate('/review'); 
   }
+  
 
   return (
     <div className="main-container">

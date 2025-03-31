@@ -1,0 +1,31 @@
+.easter-egg-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: black;
+  color: white;
+  padding: 20px;
+}
+
+.easter-egg-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.easter-egg-teamname {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.easter-egg-members {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.easter-egg-member {
+  margin: 5px 0;
+}

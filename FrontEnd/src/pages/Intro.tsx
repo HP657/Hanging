@@ -20,12 +20,16 @@ export default function Intro() {
     setTimeout(() => setShowButton(true), 2000); 
   }, []);
 
+  const goToEgg = () => {
+    navigate('/easteregg'); 
+  }
+
   return (
     <div className="intro-container">
       {showStars && <FallingStars />}
       {showButton && (
         <>
-        <img src="/imgs/logo.png" className="logo_imgs" alt="인트로 이미지"/>
+        <img onClick={goToEgg} src="/imgs/logo.png" className="logo_imgs" alt="인트로 이미지"/>
         <button className="intro-enter-button" onClick={() => navigate("/main")}>
           들어가기
         </button>

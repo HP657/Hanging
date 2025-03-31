@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 public class CourseEvaluationDTO {
     private String department;
     private String professorName;
-    private Double averageScore;
-    private String evaluationComments;
+    private String lectureTitle;
+    private Double score;
+    private String evaluationComment;
 }

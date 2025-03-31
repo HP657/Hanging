@@ -75,8 +75,6 @@ public class EvaluationService {
 
     public List<LectureEvaluationDTO> getLectureEvaluations() {
         return  evaluationRepository.findLectureEvaluationsNative();
-
-
     }
 
     public List<CourseEvaluationDTO> getCourseEvaluationsWithComments() {

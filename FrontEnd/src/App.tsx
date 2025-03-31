@@ -5,6 +5,7 @@ import Ranking from "./pages/Ranking";
 import Main from "./pages/Main";
 import Review from "./pages/Review";
 import Detail from "./pages/Detail";
+import EasterEggPage from "./pages/EasterEgg";
 
 export default function App() {
   return (
@@ -16,6 +17,7 @@ export default function App() {
         <Route path="/rank" element={<Ranking />} />
         <Route path="/review" element={<Review />} />
         <Route path="/detail" element={<Detail />} />
+        <Route path="/easteregg" element={<EasterEggPage />} />
       </Routes>
     </Router>
   );
