@@ -9,6 +9,7 @@ interface ReviewItem {
     lectureTitle: string;
     score: number;
     evaluationComment: string;
+    evaluationTimestamp: string;
 }
 
 export default function Review() {
@@ -20,6 +21,7 @@ export default function Review() {
             try {
                 const response = await API("/api/evaluation/all/professor/review", "GET", null);
                 setData(response.data);
+                console.log(response.data);
             } catch (error) {
                 console.error("데이터를 불러오는 중 오류 발생:", error);
             } finally {
@@ -28,6 +30,20 @@ export default function Review() {
         }
         fetchData();
     }, []);
+
+    const formatTimestamp = (timestamp: string) => {
+        const date = new Date(timestamp);
+        const options: Intl.DateTimeFormatOptions = {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            hour: 'numeric',
+            minute: 'numeric',
+            second: 'numeric',
+            hour12: true,
+        };
+        return date.toLocaleString('ko-KR', options); 
+    };
 
     return (
         <div className="review-container">
@@ -41,8 +57,8 @@ export default function Review() {
             ) : (
                 data.map((review, index) => (
                     <div key={index} className="review-card">
-                        <h3 className="review-title">{review.lectureTitle}</h3>
-                        <p className="review-text">학과: {review.department}</p>
+                        <h3 className="review-title">{review.lectureTitle}<span className="review-time">{formatTimestamp(review.evaluationTimestamp)}</span></h3>
+                        <p className="review-text">학과: {review.department} </p>
                         <p className="review-text">교수: {review.professorName}</p>
                         <p className="review-text">평점: {review.score}</p>
                         <p className="review-comment">평가: {review.evaluationComment}</p>

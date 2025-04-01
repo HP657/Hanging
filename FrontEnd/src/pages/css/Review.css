@@ -39,3 +39,9 @@
   font-style: italic;
   color: #ccc;
 }
+
+.review-time {
+  color: #808080;
+  font-size: 0.9rem;
+  margin-left: 10px;
+}

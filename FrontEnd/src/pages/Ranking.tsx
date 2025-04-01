@@ -70,7 +70,7 @@ export default function Ranking() {
         <button className={!isDepartment ? "active" : ""} onClick={() => setIsDepartment(false)}>
           전체 랭킹
         </button>
-      </div>
+      </div>  
 
       {/* 전체 랭킹 */}
       {!isDepartment && (
@@ -80,7 +80,7 @@ export default function Ranking() {
               <li key={rank.id} className="ranking-item">
                 <span className="ranking-rank">{rank.id}위</span>
                 <span className="ranking-name">{rank.professorName}</span>
-                <span className="ranking-score">{rank.averageScore.toFixed(2)}점</span>
+                <span className="ranking-score">{rank.averageScore.toFixed(1)}점</span>
               </li>
             ))
           ) : (

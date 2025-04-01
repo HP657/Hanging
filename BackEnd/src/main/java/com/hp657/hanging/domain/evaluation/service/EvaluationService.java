@@ -17,6 +17,7 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -64,6 +65,7 @@ public class EvaluationService {
         Evaluation evaluation = new Evaluation();
         evaluation.setLecture(lecture);
         evaluation.setContent(requestDto.getEvaluationContent());
+        evaluation.setTimestamp(LocalDateTime.now());
         evaluation = evaluationRepository.save(evaluation);
 
         // 별점 등록
@@ -78,7 +80,6 @@ public class EvaluationService {
     }
 
     public List<CourseEvaluationDTO> getCourseEvaluationsWithComments() {
-
         return evaluationRepository.findLectureEvaluationsWithComments();
     }
 }
