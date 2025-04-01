@@ -3,6 +3,7 @@ import StarInput from "../components/StarInput";
 import "./css/Rating.css";
 import API from "../api/api";
 import { useNavigate } from "react-router-dom";
+import GoBack from "../components/goBack";
 
 export default function Rating() {
   const [selectedDepartment, setSelectedDepartment] = useState<string>("");
@@ -89,7 +90,7 @@ export default function Rating() {
 
     try {
       await API("/api/evaluation", "POST", data);
-      navigate("/main");
+      navigate("/review");
     } catch (error) {
       console.error("API 요청 오류: ", error);
     }
@@ -97,6 +98,7 @@ export default function Rating() {
 
   return (
     <div className="rating-evaluation-container">
+      <GoBack />
       <h3 className="rating-evaluation-title">강의 평가하기</h3>
 
       <div>

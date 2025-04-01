@@ -19,7 +19,7 @@ import java.util.List;
 public class LectureController {
     private final LectureService lectureService;
 
-    @GetMapping()
+    @GetMapping
     public ResponseEntity<Response<List<String>>> getLecturesByProfessor(
             @RequestParam String departmentName,
             @RequestParam String professorName) {

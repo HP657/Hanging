@@ -4,18 +4,18 @@ import "./css/EasterEgg.css";
 const EasterEggPage = () => {
   const teamName = "팀 이스터에그";
   const members = [
-    { name: "이승현", role: "팀장" },
-    { name: "박건희", role: "프론트엔드" },
-    { name: "이효준", role: "백엔드" },
-    { name: "김진성", role: "디자이너" },
-    { name: "김태윤", role: "기획자" },
-    { name: "박도진", role: "데브옵스" },
-    { name: "박지영", role: "QA" }
+    { name: "이승현", role: "팀장 및 총괄" },
+    { name: "박건희", role: "디자인" },
+    { name: "이효준", role: "시제품 개발" },
+    { name: "김진성", role: "발표 및 PPT" },
+    { name: "김태윤", role: "PPT 제작" },
+    { name: "박도진", role: "설문조사" },
+    { name: "박지영", role: "자료조사" }
   ];
 
   return (
     <div className="easter-egg-container">
-      <h1 className="easter-egg-title">🎉 You found the Easter Egg! 🎉</h1>
+      <h1 className="easter-egg-title">🎉 절 찾으셨군요! 🎉</h1>
       <h2 className="easter-egg-teamname">{teamName}</h2>
       <ul className="easter-egg-members">
         {members.map((member, index) => (

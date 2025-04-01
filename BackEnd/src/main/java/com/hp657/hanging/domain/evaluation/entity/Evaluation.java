@@ -27,4 +27,6 @@ public class Evaluation {
     @ManyToOne
     @JoinColumn(name = "lecture_id", nullable = false)
     private Lecture lecture;
+
+    
 }

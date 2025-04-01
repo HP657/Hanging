@@ -72,3 +72,11 @@
 .ranking-score {
   font-weight: bold;
 }
+
+.department-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  text-align: left;
+}
