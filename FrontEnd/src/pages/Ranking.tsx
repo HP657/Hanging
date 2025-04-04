@@ -36,7 +36,6 @@ export default function Ranking() {
               ...item,
               id: index + 1, // 1위부터 ID 부여
             }));
-            console.log(response.data);
           setOverallRanking(sortedData);
 
           // 학과별로 데이터 분류

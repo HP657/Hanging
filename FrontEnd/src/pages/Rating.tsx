@@ -45,7 +45,6 @@ export default function Rating() {
     if (department) {
       try {
         const response = await API(`/api/professor/by/department?departmentName=${department}`, "GET", null);
-        console.log(response.data);
         setProfessorList(response.data.filter((prof: { professorName: any }) => prof.professorName !== null).map((prof: { professorName: string }) => prof.professorName));
       } catch (error) {
         console.error("Failed to fetch professors", error);
