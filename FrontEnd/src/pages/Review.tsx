@@ -15,6 +15,7 @@ interface ReviewItem {
 export default function Review() {
     const [data, setData] = useState<ReviewItem[]>([]);
     const [loading, setLoading] = useState(true);
+    const [searchQuery, setSearchQuery] = useState("");
 
     useEffect(() => {
         async function fetchData() {
@@ -45,20 +46,39 @@ export default function Review() {
         return date.toLocaleString('ko-KR', options); 
     };
 
+    const filteredData = data.filter((review) => {
+        const lowerQuery = searchQuery.toLowerCase();
+        return (
+            review.professorName.toLowerCase().includes(lowerQuery) ||
+            review.lectureTitle.toLowerCase().includes(lowerQuery)
+        );
+    });
+
     return (
         <div className="review-container">
             <GoBack />
             <h1 className="review-header">최신 강의 평가</h1>
 
+            <input
+                type="text"
+                placeholder="교수명 또는 강의명을 입력하세요..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="search-input"
+            />
+
             {loading ? (
                 <p className="loading-text">불러오는 중...</p>
-            ) : data.length === 0 ? (
-                <p className="no-review-text">강의 평가가 없습니다.</p>
+            ) : filteredData.length === 0 ? (
+                <p className="no-review-text">검색 결과가 없습니다.</p>
             ) : (
-                data.map((review, index) => (
+                filteredData.map((review, index) => (
                     <div key={index} className="review-card">
-                        <h3 className="review-title">{review.lectureTitle}<span className="review-time">{formatTimestamp(review.evaluationTimestamp)}</span></h3>
-                        <p className="review-text">학과: {review.department} </p>
+                        <h3 className="review-title">
+                            {review.lectureTitle}
+                            <span className="review-time">{formatTimestamp(review.evaluationTimestamp)}</span>
+                        </h3>
+                        <p className="review-text">학과: {review.department}</p>
                         <p className="review-text">교수: {review.professorName}</p>
                         <p className="review-text">평점: {review.score}</p>
                         <p className="review-comment">평가: {review.evaluationComment}</p>
