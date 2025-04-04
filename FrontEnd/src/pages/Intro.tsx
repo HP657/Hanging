@@ -5,12 +5,12 @@ import "./css/Intro.css"
 
 export default function Intro() {
   
-  useEffect(() => {
-    fetch("https://api64.ipify.org?format=json")
-      .then((res) => res.json())
-      .then((data) => console.log("클라이언트 IP 주소:", data.ip))
-      .catch((err) => console.error("IP 가져오기 실패:", err));
-  }, []);
+  // useEffect(() => {
+  //   fetch("https://api64.ipify.org?format=json")
+  //     .then((res) => res.json())
+  //     .then((data) => console.log("클라이언트 IP 주소:", data.ip))
+  //     .catch((err) => console.error("IP 가져오기 실패:", err));
+  // }, []);
   
   const [showStars, setShowStars] = useState(true); 
   const [showButton, setShowButton] = useState(false); 
