@@ -1,5 +1,3 @@
-// src/components/Main.tsx
-
 import { useNavigate } from 'react-router-dom'; // react-router-dom을 사용하여 리다이렉션
 import "./css/Main.css"; // 검은색 테마 스타일 파일 임포트
 import { useEffect } from 'react';
@@ -36,11 +34,11 @@ const Main = () => {
   return (
     <div className="main-container">
       <img src="/imgs/logo.png" className="main_logo_imgs"alt="인트로 이미지" />
-      <button onClick={goToRating}>강의 평가하기</button>
+      <button className="main-button" onClick={goToRating}>강의 평가하기</button>
       <br />
-      <button onClick={goToReview}>평가문 보기</button>
+      <button className="main-button"onClick={goToReview}>평가문 보기</button>
       <br />
-      <button onClick={goToRanking}>랭킹 보기</button>
+      <button className="main-button" onClick={goToRanking}>랭킹 보기</button>
     </div>
   );
 };
