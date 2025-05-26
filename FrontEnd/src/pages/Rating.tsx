@@ -15,17 +15,16 @@ export default function Rating() {
   const [departments, setDepartments] = useState<string[]>([]);
   const [professorList, setProfessorList] = useState<string[]>([]);
   const [lectureList, setLectureList] = useState<string[]>([]);
-  
+
   const [customProfessor, setCustomProfessor] = useState<string>("");
   const [customLecture, setCustomLecture] = useState<string>("");
-  
+
   const navigate = useNavigate();
 
   useEffect(() => {
     async function fetchDepartments() {
       try {
         const response = await API("/api/department", "GET", null);
-        console.log(response.data);
         setDepartments(response.data.map((dept: { name: string }) => dept.name));
       } catch (error) {
         console.error("Failed to fetch departments", error);
@@ -64,7 +63,6 @@ export default function Rating() {
     if (professor) {
       try {
         const response = await API(`/api/lecture?departmentName=${selectedDepartment}&professorName=${professor}`, "GET", null);
-        console.log(response.data);
         setLectureList(response.data);
       } catch (error) {
         console.error("Failed to fetch lectures", error);
@@ -78,6 +76,22 @@ export default function Rating() {
   const handleSubmit = async () => {
     const professorToSend = selectedProfessor === "직접 입력" ? customProfessor : selectedProfessor;
     const lectureToSend = selectedLecture === "직접 입력" ? customLecture : selectedLecture;
+
+    if (
+      !selectedDepartment ||
+      !professorToSend ||
+      !lectureToSend ||
+      rating === 0 ||
+      !evaluationContent.trim()
+    ) {
+      alert("모든 항목을 입력해주세요.");
+      return;
+    }
+
+    if (evaluationContent.length < 10) {
+      alert("평가문은 10자 이상 입력해주세요.");
+      return;
+    }
 
     const data = {
       departmentName: selectedDepartment,
@@ -95,7 +109,7 @@ export default function Rating() {
     }
   };
 
-  return (
+   return (
     <div className="rating-evaluation-container">
       <GoBack />
       <h3 className="rating-evaluation-title">강의 평가하기</h3>
@@ -111,42 +125,70 @@ export default function Rating() {
       </div>
 
       {selectedDepartment && (
-        <div>
-          <label className="rating-form-label">교수 선택:</label>
-          <select className="rating-select-box" value={selectedProfessor} onChange={handleProfessorChange}>
-            <option value="">--교수 선택--</option>
-            {professorList.map((professor) => (
-              <option key={professor} value={professor}>{professor}</option>
-            ))}
-            <option value="직접 입력">직접 입력</option>
-          </select>
-          {selectedProfessor === "직접 입력" && <input type="text" className="rating-input-field" value={customProfessor} onChange={(e) => setCustomProfessor(e.target.value)} placeholder="교수 이름을 입력하세요" />}
-        </div>
-      )}
+        <>
+          <div>
+            <label className="rating-form-label">교수 선택:</label>
+            <select className="rating-select-box" value={selectedProfessor} onChange={handleProfessorChange}>
+              <option value="">--교수 선택--</option>
+              {professorList.map((professor) => (
+                <option key={professor} value={professor}>{professor}</option>
+              ))}
+              <option value="직접 입력">직접 입력</option>
+            </select>
+            {selectedProfessor === "직접 입력" && (
+              <input
+                type="text"
+                className="rating-input-field"
+                value={customProfessor}
+                onChange={(e) => setCustomProfessor(e.target.value)}
+                placeholder="교수 이름을 입력하세요"
+              />
+            )}
+            <p className="rating-help">※ 교수님 이름을 성을 붙여 작성해주세요.</p>
+          </div>
 
-      {selectedProfessor && (
-        <div>
-          <label className="rating-form-label">수업 선택:</label>
-          <select className="rating-select-box" value={selectedLecture} onChange={(e) => setSelectedLecture(e.target.value)}>
-            <option value="">--수업 선택--</option>
-            {lectureList.map((lecture) => (
-              <option key={lecture} value={lecture}>{lecture}</option>
-            ))}
-            <option value="직접 입력">직접 입력</option>
-          </select>
-          {selectedLecture === "직접 입력" && <input type="text" className="rating-input-field" value={customLecture} onChange={(e) => setCustomLecture(e.target.value)} placeholder="수업 이름을 입력하세요" />}
-        </div>
+          {selectedProfessor && (
+            <div>
+              <label className="rating-form-label">수업 선택:</label>
+              <select className="rating-select-box" value={selectedLecture} onChange={(e) => setSelectedLecture(e.target.value)}>
+                <option value="">--수업 선택--</option>
+                {lectureList.map((lecture) => (
+                  <option key={lecture} value={lecture}>{lecture}</option>
+                ))}
+                <option value="직접 입력">직접 입력</option>
+              </select>
+              {selectedLecture === "직접 입력" && (
+                <input
+                  type="text"
+                  className="rating-input-field"
+                  value={customLecture}
+                  onChange={(e) => setCustomLecture(e.target.value)}
+                  placeholder="수업 이름을 입력하세요"
+                />
+              )}
+              <p className="rating-help">※ 수업명을 정확히 입력해주세요. (분반 제외)</p>
+            </div>
+          )}
+        </>
       )}
 
       <div>
         <label className="rating-form-label">평점 (0~5):</label>
         <StarInput onRatingChange={setRating} />
         <span className="rating-display">{rating}</span>
+        <p className="rating-help">※ 기본값은 0이며, 별점을 눌러 평가해주세요.</p>
       </div>
 
       <div>
         <label className="rating-form-label">평가문:</label>
-        <input type="text" className="rating-comment-input" value={evaluationContent} onChange={(e) => setEvaluationContent(e.target.value)} placeholder="교수님에 대한 의견을 남겨주세요" />
+        <input
+          type="text"
+          className="rating-comment-input"
+          value={evaluationContent}
+          onChange={(e) => setEvaluationContent(e.target.value)}
+          placeholder="교수님에 대한 의견을 남겨주세요"
+        />
+        <p className="rating-help">※ 평가문은 10자 이상 입력해주세요.</p>
       </div>
 
       <div>
