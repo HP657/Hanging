@@ -14,7 +14,6 @@
 }
 
 .ranking-tabs {
-  display: flex;
   justify-content: center;
   margin-bottom: 10px;
 }
@@ -26,19 +25,19 @@
   font-size: 16px;
   padding: 10px 15px;
   cursor: pointer;
-  transition: color 0.3s;
+  transition: color 0.3s, transform 0.2s ease;
 }
 
 .ranking-tabs button.active {
   color: #ffcc00;
   font-weight: bold;
   border-bottom: 2px solid #ffcc00;
+  transform: translateY(-5px);
 }
 
 .ranking-tabs button:hover {
   color: #ffcc00;
 }
-
 .ranking-list {
   list-style: none;
   padding: 0;
